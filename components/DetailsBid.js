@@ -1,0 +1,55 @@
+import { View, Text, Image } from "react-native";
+import React from "react";
+import { EThPrice } from "./SubInfo";
+import { COLORS, SIZES, FONTS } from "../constants";
+const DetailsBid = ({ bid }) => {
+  return (
+    <View
+      style={{
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginVertical: SIZES.base,
+        paddingHorizontal: SIZES.base * 2,
+      }}
+      key={bid.id}
+    >
+      <Image
+        source={bid.image}
+        resizeMode="contain"
+        style={{ width: 48, height: 48 }}
+      />
+
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          paddingHorizontal: SIZES.base,
+        }}
+      >
+        <Text
+          style={{
+            fontFamily: FONTS.semiBold,
+            fontSize: SIZES.small,
+            color: COLORS.primary,
+          }}
+        >
+          Bid Placed by {bid.name}
+        </Text>
+        <Text
+          style={{
+            fontFamily: FONTS.semiBold,
+            fontSize: SIZES.small,
+            color: COLORS.primary,
+          }}
+        >
+          {bid.date}
+        </Text>
+      </View>
+      <EThPrice price={bid.price} />
+    </View>
+  );
+};
+
+export default DetailsBid;
