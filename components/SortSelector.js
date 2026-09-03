@@ -17,8 +17,8 @@ const SortSelector = ({ value, onChange }) => {
   return (
     <View style={styles.wrap}>
       <SortButton label="Newest" active={value === "newest"} onPress={() => onChange("newest")} />
-      <SortButton label="Price \u2191" active={value === "asc"} onPress={() => onChange("asc")} />
-      <SortButton label="Price \u2193" active={value === "desc"} onPress={() => onChange("desc")} />
+      <SortButton label="Price ↑" active={value === "asc"} onPress={() => onChange("asc")} />
+      <SortButton label="Price ↓" active={value === "desc"} onPress={() => onChange("desc")} />
     </View>
   );
 };
