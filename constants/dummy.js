@@ -1,11 +1,17 @@
 import assets from "./assets";
 
+const baseDate = new Date("2026-09-03T12:00:00Z").getTime();
+const day = 24 * 60 * 60 * 1000;
+const offsetFromBase = (days, hours = 0) =>
+  new Date(baseDate + days * day + hours * 60 * 60 * 1000).toISOString();
+
 const NFTData = [
   {
     id: "NFT-01",
     name: "Abstracto #312",
     creator: "Putri Intan",
     price: 4.25,
+    endsAt: offsetFromBase(2, 4),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.",
     image: assets.nft01,
@@ -38,6 +44,7 @@ const NFTData = [
     name: "Green Coins",
     creator: "Siti Nurhaliza",
     price: 7.25,
+    endsAt: offsetFromBase(0, 6),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
     image: assets.nft02,
@@ -56,6 +63,7 @@ const NFTData = [
     name: "NFT coins race",
     creator: "Elisabeth aho",
     price: 95.25,
+    endsAt: offsetFromBase(5, 12),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
     image: assets.nft03,
@@ -81,6 +89,7 @@ const NFTData = [
     name: "Nifty NFT",
     creator: "Putri Intan",
     price: 54.25,
+    endsAt: offsetFromBase(1, 2),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur.",
     image: assets.nft04,
@@ -120,6 +129,7 @@ const NFTData = [
     name: "Colorful circles",
     creator: "David doe",
     price: 10.25,
+    endsAt: offsetFromBase(3, 8),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.",
     image: assets.nft05,
@@ -138,6 +148,7 @@ const NFTData = [
     name: "Black box model",
     creator: "Leo Messi",
     price: 20.25,
+    endsAt: offsetFromBase(7),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
     image: assets.nft06,
@@ -184,6 +195,7 @@ const NFTData = [
     name: "Abstracto soulful art",
     creator: "Victor de la Cruz",
     price: 18.25,
+    endsAt: offsetFromBase(14),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis. Ullamcorper platea penatibus ornare egestas nulla ligula hendrerit nisl suscipit sociosqu maximus, tincidunt aptent habitant purus pharetra ultrices dapibus laoreet nisi lacinia. Porta malesuada netus vel sapien conubia porttitor aliquam ut pretium ante litora molestie senectus magna egestas sociosqu, eget aliquet fames pharetra felis posuere varius fringilla quisque in arcu montes eu ullamcorper.",
     image: assets.nft07,
