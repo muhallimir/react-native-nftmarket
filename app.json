@@ -1,33 +1,40 @@
 {
   "expo": {
-    "name": "native-app",
-    "slug": "native-app",
-    "version": "1.0.0",
+    "name": "NFT Marketplace",
+    "slug": "nft-marketplace",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
+    "scheme": "nftmarket",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1a1a2e"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.amirsali.nftmarket"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#1a1a2e"
+      },
+      "package": "com.amirsali.nftmarket"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "extra": {
+      "author": "Amirsali",
+      "authorEmail": "mir23wpurposes@gmail.com",
+      "github": "https://github.com/muhallimir/react-native-nftmarket"
     }
   }
 }
