@@ -1,0 +1,37 @@
+appId: com.amirsali.nftmarket
+---
+- launchApp:
+    clearState: true
+- extendedWaitUntil:
+    visible: "Let’s find masterpiece Art"
+    timeout: 30000
+- takeScreenshot: nft-home
+- assertVisible: "Search NFTs"
+- assertVisible: "Newest"
+- assertVisible:
+    text: "Price ↑"
+- assertVisible:
+    text: "Price ↓"
+- assertVisible: "Place a bid"
+- assertVisible:
+    text: "Abstracto #312"
+- assertVisible:
+    text: "Hello Victoria 👋"
+- tapOn:
+    text: "Price ↑"
+- extendedWaitUntil:
+    visible: "Price ↑"
+    timeout: 5000
+- takeScreenshot: nft-sort-asc
+- tapOn:
+    text: "Price ↓"
+- extendedWaitUntil:
+    visible: "Price ↓"
+    timeout: 5000
+- takeScreenshot: nft-sort-desc
+- tapOn:
+    text: "Place a bid"
+- extendedWaitUntil:
+    visible: "Place a bid"
+    timeout: 5000
+- takeScreenshot: nft-detail
