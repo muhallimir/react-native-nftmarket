@@ -1,44 +1,61 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { View, SafeAreaView, FlatList } from "react-native";
 import { COLORS, NFTData } from "../constants";
-import { useState } from "react";
-import { FocusedStatusBar, HomeHeader, NFTCard } from "../components";
+import {
+  FocusedStatusBar,
+  HomeHeader,
+  NFTCard,
+  SortSelector,
+} from "../components";
+
+const SORT_OPTIONS = {
+  newest: { label: "Newest", comparator: null },
+  asc: {
+    label: "Price low to high",
+    comparator: (a, b) => a.price - b.price,
+  },
+  desc: {
+    label: "Price high to low",
+    comparator: (a, b) => b.price - a.price,
+  },
+};
 
 const HomeScreen = () => {
-  // implement search
-  const [nftData, setNftData] = useState(NFTData);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortKey, setSortKey] = useState("newest");
 
-  const handleSearch = (value) => {
-    if (value.length === 0) {
-      setNftData(NFTData);
+  const filteredData = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase();
+    const base = term.length
+      ? NFTData.filter((item) =>
+          item.name.toLowerCase().includes(term)
+        )
+      : NFTData;
+    const option = SORT_OPTIONS[sortKey] || SORT_OPTIONS.newest;
+    if (!option.comparator) {
+      return base;
     }
+    return [...base].sort(option.comparator);
+  }, [searchTerm, sortKey]);
 
-    const filteredData = NFTData.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
-    );
-
-    if (filteredData.length === 0) {
-      setNftData(NFTData);
-    } else {
-      setNftData(filteredData);
-    }
-  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FocusedStatusBar background={COLORS.primary} />
       <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <FlatList
-            // data maps and render to the data prop of the FlatList
-            ListHeaderComponent={<HomeHeader onSearch={handleSearch} />}
-            // data from the current state
-            data={nftData}
+            ListHeaderComponent={
+              <View>
+                <HomeHeader onSearch={setSearchTerm} />
+                <SortSelector value={sortKey} onChange={setSortKey} />
+              </View>
+            }
+            data={filteredData}
             renderItem={({ item }) => <NFTCard data={item} />}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
           />
         </View>
-        {/* background design */}
         <View
           style={{
             position: "absolute",

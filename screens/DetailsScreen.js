@@ -15,6 +15,8 @@ import {
   DetailsDesc,
   DetailsBid,
   FocusedStatusBar,
+  HeartButton,
+  CountdownTimer,
 } from "../components";
 import React from "react";
 
@@ -31,22 +33,27 @@ const DetailsHeader = ({ data, navigation }) => (
       left={15}
       top={StatusBar.currentHeight - 15}
     />
-    <CircleButton
-      imgUrl={assets.heart}
-      right={15}
-      top={StatusBar.currentHeight - 15}
-    />
+    <View
+      style={{
+        position: "absolute",
+        right: 15,
+        top: StatusBar.currentHeight - 15,
+        width: 40,
+        height: 40,
+        borderRadius: SIZES.extraLarge,
+        backgroundColor: COLORS.white,
+        alignItems: "center",
+        justifyContent: "center",
+        ...SHADOWS.light,
+      }}
+    >
+      <HeartButton nftId={data.id} size={22} />
+    </View>
   </View>
 );
 
 const DetailsScreen = ({ route, navigation }) => {
   const { data } = route.params;
-  console.log(`
-  ----------------------------------------------------`);
-  console.log(data);
-  console.log(`
-  ----------------------------------------------------
-  `);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -61,7 +68,6 @@ const DetailsScreen = ({ route, navigation }) => {
           position: "absolute",
           bottom: 0,
           paddingVertical: SIZES.font,
-
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "rgba(255, 255, 255, 0.5)",
@@ -80,6 +86,14 @@ const DetailsScreen = ({ route, navigation }) => {
           <React.Fragment>
             <DetailsHeader data={data} navigation={navigation} />
             <SubInfo data={data} />
+            <View
+              style={{
+                paddingHorizontal: SIZES.font,
+                marginTop: SIZES.font,
+              }}
+            >
+              <CountdownTimer endsAt={data.endsAt} />
+            </View>
             <View
               style={{
                 padding: SIZES.font,
