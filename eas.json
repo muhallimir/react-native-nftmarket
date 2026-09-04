@@ -23,14 +23,6 @@
       "ios": {
         "buildConfiguration": "Release"
       }
-    },
-    "submit": {
-      "production": {
-        "ios": {
-          "ascAppIdentifier": null,
-          "appleTeamId": null
-        }
-      }
     }
   }
 }
