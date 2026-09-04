@@ -15,7 +15,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.amirsali.nftmarket"
@@ -34,7 +36,11 @@
     "extra": {
       "author": "Amirsali",
       "authorEmail": "mir23wpurposes@gmail.com",
-      "github": "https://github.com/muhallimir/react-native-nftmarket"
-    }
+      "github": "https://github.com/muhallimir/react-native-nftmarket",
+      "eas": {
+        "projectId": "4adb4e65-6537-4126-8002-8337ed1c5131"
+      }
+    },
+    "owner": "amirsali"
   }
 }
