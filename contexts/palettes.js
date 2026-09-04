@@ -1,0 +1,43 @@
+// Two palettes wired into ThemeContext. The base COLORS theme object still
+// resolves to the light palette so non-themed code keeps its defaults.
+export const lightPalette = {
+  mode: "light",
+  background: "#FFFFFF",
+  surface: "#F7F9FB",
+  card: "#FFFFFF",
+  primary: "#001F2D",
+  primaryAccent: "#1B6FA8",
+  secondary: "#4D626C",
+  text: "#001F2D",
+  textMuted: "#4D626C",
+  textInverse: "#FFFFFF",
+  border: "#EEF2F5",
+  divider: "#E0E5E9",
+  success: "#10B981",
+  warning: "#F59E0B",
+  danger: "#FF3B5C",
+  overlay: "rgba(0,0,0,0.45)",
+  inputBg: "#EEF2F5",
+  headerBg: "#001F2D",
+};
+
+export const darkPalette = {
+  mode: "dark",
+  background: "#0B1220",
+  surface: "#11192A",
+  card: "#16203A",
+  primary: "#E5F2FA",
+  primaryAccent: "#7CC8FF",
+  secondary: "#A4B3C2",
+  text: "#F2F5F8",
+  textMuted: "#9AA7B6",
+  textInverse: "#001F2D",
+  border: "#1F2A40",
+  divider: "#26314B",
+  success: "#10B981",
+  warning: "#F59E0B",
+  danger: "#FF5C7A",
+  overlay: "rgba(0,0,0,0.65)",
+  inputBg: "#1A2541",
+  headerBg: "#0B1220",
+};

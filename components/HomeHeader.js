@@ -1,12 +1,25 @@
-import { View, Text, Image, TextInput } from "react-native";
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { COLORS, FONTS, SIZES, assets } from "../constants";
 import FavoritesBadge from "./FavoritesBadge";
+import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "../contexts/ThemeContext";
+import { useFilters } from "../contexts/FilterContext";
+import { SunIcon, MoonIcon } from "./ThemeIcons";
 
-const HomeHeader = ({ onSearch }) => {
+const HomeHeader = ({ onSearch, onOpenFilters }) => {
+  const navigation = useNavigation();
+  const { colors, toggle, pref } = useTheme();
+  const { filters } = useFilters();
+
+  const activeFilterCount =
+    (filters.priceMax < 200 ? 1 : 0) +
+    (filters.category !== "All" ? 1 : 0) +
+    (filters.status !== "all" ? 1 : 0);
+
   return (
     <View
       style={{
-        backgroundColor: COLORS.primary,
+        backgroundColor: colors.headerBg,
         padding: SIZES.font,
       }}
     >
@@ -24,25 +37,33 @@ const HomeHeader = ({ onSearch }) => {
         />
 
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <FavoritesBadge />
-          <View style={{ width: 45, height: 45, marginLeft: SIZES.base }}>
+          <TouchableOpacity
+            onPress={toggle}
+            accessibilityRole="button"
+            accessibilityLabel={`Switch theme, currently ${pref}`}
+            style={[styles.iconBtn, { backgroundColor: "rgba(255,255,255,0.18)" }]}
+          >
+            {pref === "dark" ? (
+              <SunIcon color="#FFFFFF" />
+            ) : (
+              <MoonIcon color="#FFFFFF" />
+            )}
+          </TouchableOpacity>
+          <View style={{ width: 8 }} />
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Open profile"
+            onPress={() => navigation.navigate("Profile")}
+            style={[styles.iconBtn, { backgroundColor: "rgba(255,255,255,0.18)" }]}
+          >
             <Image
               source={assets.person01}
               resizeMode="contain"
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: 22, height: 22 }}
             />
-            <Image
-              source={assets.badge}
-              resizeMode="contain"
-              style={{
-                position: "absolute",
-                width: 15,
-                height: 15,
-                bottom: 0,
-                right: 0,
-              }}
-            />
-          </View>
+          </TouchableOpacity>
+          <View style={{ width: 8 }} />
+          <FavoritesBadge />
         </View>
       </View>
 
@@ -73,7 +94,7 @@ const HomeHeader = ({ onSearch }) => {
           style={{
             width: "100%",
             borderRadius: SIZES.font,
-            backgroundColor: COLORS.gray,
+            backgroundColor: "rgba(255,255,255,0.92)",
             flexDirection: "row",
             alignItems: "center",
             paddingHorizontal: SIZES.font,
@@ -87,13 +108,41 @@ const HomeHeader = ({ onSearch }) => {
           />
           <TextInput
             placeholder="Search NFTs"
-            style={{ flex: 1 }}
+            placeholderTextColor="#74858C"
+            style={{ flex: 1, color: "#001F2D" }}
             onChangeText={onSearch}
           />
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Open filters"
+            onPress={onOpenFilters}
+            style={styles.filterBtn}
+          >
+            <Text style={styles.filterIcon}>{activeFilterCount > 0 ? `${activeFilterCount}\u00d7` : "\u2630"}</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  iconBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  filterBtn: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  filterIcon: {
+    fontSize: 18,
+    color: "#001F2D",
+    fontWeight: "700",
+  },
+});
 
 export default HomeHeader;

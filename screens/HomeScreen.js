@@ -1,12 +1,18 @@
 import React, { useMemo, useState } from "react";
 import { View, SafeAreaView, FlatList } from "react-native";
-import { COLORS, NFTData } from "../constants";
+import { NFTData } from "../constants";
 import {
   FocusedStatusBar,
   HomeHeader,
   NFTCard,
   SortSelector,
+  TrendingCarousel,
 } from "../components";
+import RecentlyViewedRow from "../components/RecentlyViewedRow";
+import SearchFilters from "../components/SearchFilters";
+import EmptyState from "../components/EmptyState";
+import { useFilters } from "../contexts/FilterContext";
+import { useTheme } from "../contexts/ThemeContext";
 
 const SORT_OPTIONS = {
   newest: { label: "Newest", comparator: null },
@@ -22,38 +28,74 @@ const SORT_OPTIONS = {
 
 const HomeScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortKey, setSortKey] = useState("newest");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const { sortKey, setSortKey, filters } = useFilters();
+  const { colors } = useTheme();
 
   const filteredData = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
-    const base = term.length
-      ? NFTData.filter((item) =>
-          item.name.toLowerCase().includes(term)
-        )
-      : NFTData;
+    const now = Date.now();
+    let base = NFTData;
+    if (term.length) {
+      base = base.filter((item) =>
+        item.name.toLowerCase().includes(term) ||
+        item.creator.toLowerCase().includes(term)
+      );
+    }
+    if (filters.category && filters.category !== "All") {
+      base = base.filter((item) => item.category === filters.category);
+    }
+    base = base.filter((item) => {
+      const price = item.price;
+      const ok = price >= (filters.priceMin || 0) && price <= (filters.priceMax || 200);
+      if (!ok) return false;
+      if (filters.status === "active") {
+        return new Date(item.endsAt).getTime() > now;
+      }
+      if (filters.status === "ended") {
+        return new Date(item.endsAt).getTime() <= now;
+      }
+      return true;
+    });
     const option = SORT_OPTIONS[sortKey] || SORT_OPTIONS.newest;
     if (!option.comparator) {
       return base;
     }
     return [...base].sort(option.comparator);
-  }, [searchTerm, sortKey]);
+  }, [searchTerm, sortKey, filters]);
+
+  const empty = filteredData.length === 0;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <FocusedStatusBar background={COLORS.primary} />
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+      <FocusedStatusBar background={colors.headerBg} />
       <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <FlatList
             ListHeaderComponent={
               <View>
-                <HomeHeader onSearch={setSearchTerm} />
+                <HomeHeader
+                  onSearch={setSearchTerm}
+                  onOpenFilters={() => setFiltersOpen(true)}
+                />
                 <SortSelector value={sortKey} onChange={setSortKey} />
+                <TrendingCarousel />
+                <RecentlyViewedRow />
               </View>
             }
             data={filteredData}
             renderItem={({ item }) => <NFTCard data={item} />}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
+            ListEmptyComponent={
+              empty ? (
+                <EmptyState
+                  kind="results"
+                  title="No NFTs match"
+                  message="Try a different search term or clear filters to see more results."
+                />
+              ) : null
+            }
           />
         </View>
         <View
@@ -66,10 +108,11 @@ const HomeScreen = () => {
             zIndex: -1,
           }}
         >
-          <View style={{ height: 300, backgroundColor: COLORS.primary }} />
-          <View style={{ flex: 1, backgroundColor: COLORS.white }} />
+          <View style={{ height: 300, backgroundColor: colors.headerBg }} />
+          <View style={{ flex: 1, backgroundColor: colors.background }} />
         </View>
       </View>
+      <SearchFilters visible={filtersOpen} onClose={() => setFiltersOpen(false)} />
     </SafeAreaView>
   );
 };

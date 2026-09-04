@@ -1,14 +1,23 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { COLORS, SIZES, SHADOWS, assets } from "../constants";
 import { RectButton } from "./Button";
 import { SubInfo, EThPrice, NFTTitle } from "./SubInfo";
 import HeartButton from "./HeartButton";
+import RarityBadge from "./RarityBadge";
+import VerifiedBadge from "./VerifiedBadge";
+import { useTheme } from "../contexts/ThemeContext";
 
 const NFTCard = ({ data }) => {
   const navigation = useNavigation();
+  const { colors } = useTheme();
   return (
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        { backgroundColor: colors.card, shadowColor: colors.textMuted },
+      ]}
+    >
       <View style={styles.media}>
         <Image
           source={data.image}
@@ -18,15 +27,21 @@ const NFTCard = ({ data }) => {
         <View style={styles.heart}>
           <HeartButton nftId={data.id} size={20} />
         </View>
+        <View style={styles.rarityBadge}>
+          <RarityBadge nft={data} compact />
+        </View>
       </View>
       <SubInfo />
       <View style={styles.body}>
-        <NFTTitle
-          title={data.name}
-          subTitle={data.creator}
-          titleSize={SIZES.large}
-          subTitleSize={SIZES.small}
-        />
+        <View style={styles.titleRow}>
+          <NFTTitle
+            title={data.name}
+            subTitle={data.creator}
+            titleSize={SIZES.large}
+            subTitleSize={SIZES.small}
+            verified={Boolean(data.creatorVerified)}
+          />
+        </View>
         <View style={styles.row}>
           <EThPrice price={data.price} />
           <RectButton
@@ -42,7 +57,6 @@ const NFTCard = ({ data }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: COLORS.white,
     borderRadius: SIZES.font,
     marginBottom: SIZES.extraLarge,
     margin: SIZES.base,
@@ -69,9 +83,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  rarityBadge: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+  },
   body: {
     width: "100%",
     padding: SIZES.font,
+  },
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   row: {
     marginTop: SIZES.font,

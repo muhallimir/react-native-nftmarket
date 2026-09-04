@@ -1,7 +1,8 @@
 import { View, Text, Image } from "react-native";
 import { SIZES, COLORS, FONTS, SHADOWS, assets } from "../constants";
+import VerifiedBadge from "./VerifiedBadge";
 
-export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
+export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize, verified }) => {
   return (
     <View>
       <Text
@@ -13,15 +14,18 @@ export const NFTTitle = ({ title, subTitle, titleSize, subTitleSize }) => {
       >
         {title}
       </Text>
-      <Text
-        style={{
-          fontFamily: FONTS.regular,
-          fontSize: subTitleSize,
-          color: COLORS.primary,
-        }}
-      >
-        by {subTitle}
-      </Text>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Text
+          style={{
+            fontFamily: FONTS.regular,
+            fontSize: subTitleSize,
+            color: COLORS.primary,
+          }}
+        >
+          by {subTitle}
+        </Text>
+        {verified && <VerifiedBadge size={12} />}
+      </View>
     </View>
   );
 };
