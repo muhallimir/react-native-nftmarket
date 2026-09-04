@@ -10,11 +10,18 @@ const NFTData = [
     id: "NFT-01",
     name: "Abstracto #312",
     creator: "Putri Intan",
+    creatorVerified: true,
+    category: "Abstract",
     price: 4.25,
     endsAt: offsetFromBase(2, 4),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.",
     image: assets.nft01,
+    traits: [
+      { trait_type: "Background", value: "Crimson" },
+      { trait_type: "Palette", value: "Warm" },
+      { trait_type: "Stroke", value: "Bold" },
+    ],
     bids: [
       {
         id: "BID-11",
@@ -43,11 +50,18 @@ const NFTData = [
     id: "NFT-02",
     name: "Green Coins",
     creator: "Siti Nurhaliza",
+    creatorVerified: true,
+    category: "Generative",
     price: 7.25,
     endsAt: offsetFromBase(0, 6),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
     image: assets.nft02,
+    traits: [
+      { trait_type: "Background", value: "Forest" },
+      { trait_type: "Palette", value: "Earth" },
+      { trait_type: "Stroke", value: "Fine" },
+    ],
     bids: [
       {
         id: "BID-21",
@@ -62,11 +76,17 @@ const NFTData = [
     id: "NFT-03",
     name: "NFT coins race",
     creator: "Elisabeth aho",
+    category: "Animation",
     price: 95.25,
     endsAt: offsetFromBase(5, 12),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
     image: assets.nft03,
+    traits: [
+      { trait_type: "Background", value: "Chrome" },
+      { trait_type: "Palette", value: "Mono" },
+      { trait_type: "Stroke", value: "Geometric" },
+    ],
     bids: [
       {
         id: "BID-31",
@@ -88,11 +108,18 @@ const NFTData = [
     id: "NFT-04",
     name: "Nifty NFT",
     creator: "Putri Intan",
+    creatorVerified: true,
+    category: "Pixel",
     price: 54.25,
     endsAt: offsetFromBase(1, 2),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur.",
     image: assets.nft04,
+    traits: [
+      { trait_type: "Background", value: "Pixel Blue" },
+      { trait_type: "Palette", value: "Retro" },
+      { trait_type: "Stroke", value: "Blocky" },
+    ],
     bids: [
       {
         id: "BID-41",
@@ -128,11 +155,17 @@ const NFTData = [
     id: "NFT-05",
     name: "Colorful circles",
     creator: "David doe",
+    category: "Generative",
     price: 10.25,
     endsAt: offsetFromBase(3, 8),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural.",
     image: assets.nft05,
+    traits: [
+      { trait_type: "Background", value: "Rainbow" },
+      { trait_type: "Palette", value: "Vivid" },
+      { trait_type: "Stroke", value: "Soft" },
+    ],
     bids: [
       {
         id: "BID-51",
@@ -147,11 +180,17 @@ const NFTData = [
     id: "NFT-06",
     name: "Black box model",
     creator: "Leo Messi",
+    category: "Sculpture",
     price: 20.25,
     endsAt: offsetFromBase(7),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis.",
     image: assets.nft06,
+    traits: [
+      { trait_type: "Background", value: "Charcoal" },
+      { trait_type: "Palette", value: "Mono" },
+      { trait_type: "Stroke", value: "Geometric" },
+    ],
     bids: [
       {
         id: "BID-61",
@@ -194,11 +233,17 @@ const NFTData = [
     id: "NFT-07",
     name: "Abstracto soulful art",
     creator: "Victor de la Cruz",
+    category: "Abstract",
     price: 18.25,
     endsAt: offsetFromBase(14),
     description:
       "The action painter abstract expressionists were directly influenced by automatism. Pollock channelled this into producing gestural. Lorem ipsum dolor sit amet consectetur adipiscing elit consequat accumsan sapien, lectus convallis malesuada odio curae habitasse dignissim nascetur. Nulla sed velit erat vitae leo sem inceptos diam fames arcu hendrerit, quis ultrices in eleifend posuere ipsum conubia porttitor felis. Ullamcorper platea penatibus ornare egestas nulla ligula hendrerit nisl suscipit sociosqu maximus, tincidunt aptent habitant purus pharetra ultrices dapibus laoreet nisi lacinia. Porta malesuada netus vel sapien conubia porttitor aliquam ut pretium ante litora molestie senectus magna egestas sociosqu, eget aliquet fames pharetra felis posuere varius fringilla quisque in arcu montes eu ullamcorper.",
     image: assets.nft07,
+    traits: [
+      { trait_type: "Background", value: "Sunset" },
+      { trait_type: "Palette", value: "Warm" },
+      { trait_type: "Stroke", value: "Bold" },
+    ],
     bids: [],
   },
 ];

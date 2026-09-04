@@ -9,6 +9,15 @@ import HeartButton from "./HeartButton";
 import FavoritesBadge from "./FavoritesBadge";
 import SortSelector from "./SortSelector";
 import CountdownTimer from "./CountdownTimer";
+import TrendingCarousel from "./TrendingCarousel";
+import RarityBadge from "./RarityBadge";
+import VerifiedBadge from "./VerifiedBadge";
+import ChainSelector from "./ChainSelector";
+import SearchFilters from "./SearchFilters";
+import EmptyState from "./EmptyState";
+import ReportModal from "./ReportModal";
+import RecentlyViewedRow from "./RecentlyViewedRow";
+
 export {
   NFTCard,
   HomeHeader,
@@ -22,4 +31,12 @@ export {
   FavoritesBadge,
   SortSelector,
   CountdownTimer,
+  TrendingCarousel,
+  RarityBadge,
+  VerifiedBadge,
+  ChainSelector,
+  SearchFilters,
+  EmptyState,
+  ReportModal,
+  RecentlyViewedRow,
 };
