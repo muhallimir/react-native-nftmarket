@@ -50,6 +50,4 @@ npm run build:web      # static web bundle into ./dist
 
 This project does not commit native `android/` or `ios/` folders. Generate them with `npx expo prebuild` and then run `npx expo run:android` or `npx expo run:ios`.
 
-## License
 
-MIT, by Amirsali.
